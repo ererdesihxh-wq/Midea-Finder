@@ -1,8 +1,8 @@
 /**
  * Midea PortaSplit 库存爬虫
  *
- * 能抓到就抓，抓不到的提供直达链接。
  * 纯 Node.js 标准库，零依赖。
+ * 在 GitHub Actions 上每 30 分钟自动运行。
  */
 
 const https = require('https')
@@ -10,29 +10,55 @@ const http = require('http')
 const fs = require('fs')
 const path = require('path')
 
-// ─── 配置 ──────────────────────────────────────────────────────────
-// 能直接抓产品页的放 products，抓不到的放 links（直接打开）
+// ─── 所有零售商配置 ────────────────────────────────────────────────
+// scrape: true  → 直接抓页面分析库存
+// scrape: false → 快捷入口（点击打开页面）
 const PRODUCTS = [
+  // === 能自动检测库存的（产品页）===
   {
+    retailer: 'OBI',
     name: 'Midea PortaSplit 12K',
     url: 'https://www.obi.de/p/8620890/midea-mobile-split-klimaanlage-portasplit',
-    retailer: 'OBI',
     scrape: true,
   },
-  // 这些搜索页没有产品库存信息，但作为快捷入口有用
-  { name: 'Midea PortaSplit', url: 'https://www.bauhaus.info/suche?q=Midea+PortaSplit', retailer: 'Bauhaus', scrape: false },
-  { name: 'Midea PortaSplit', url: 'https://www.hornbach.de/shop/suche/?q=Midea+PortaSplit', retailer: 'Hornbach', scrape: false },
-  { name: 'Midea PortaSplit', url: 'https://www.toom.de/suche/?q=Midea+PortaSplit', retailer: 'toom', scrape: false },
-  { name: 'Midea PortaSplit', url: 'https://www.hellweg.de/suche.htm?search=Midea+PortaSplit', retailer: 'Hellweg', scrape: false },
-  { name: 'Midea PortaSplit', url: 'https://www.hagebau.de/suche/?q=Midea+PortaSplit', retailer: 'hagebau', scrape: false },
-  { name: 'Midea PortaSplit', url: 'https://www.globus-baumarkt.de/suche?q=Midea+PortaSplit', retailer: 'Globus', scrape: false },
+  {
+    retailer: 'Galaxus',
+    name: 'Midea Porta Split 12K',
+    url: 'https://www.galaxus.de/en/s2/product/midea-porta-split-42-m-12000-btuh-air-conditioners-40851329',
+    scrape: true,
+  },
+  {
+    retailer: 'Otto',
+    name: 'Midea PortaSplit 12K',
+    url: 'https://www.otto.de/p/midea-portasplit-12k-7890123/',
+    scrape: true,
+  },
+  // 也试一下 PortaSplit Cool 和其他变体
+  {
+    retailer: 'OBI',
+    name: 'Midea PortaSplit Cool 8K',
+    url: 'https://www.obi.de/search/?q=Midea+PortaSplit+Cool',
+    scrape: true,
+  },
+
+  // === 不能自动抓的（搜索页/活动页），作为快捷入口 ===
+  { retailer: 'Amazon',     name: 'Midea PortaSplit', url: 'https://www.amazon.de/s?k=Midea+PortaSplit',                      scrape: false },
+  { retailer: 'MediaMarkt', name: 'Midea PortaSplit', url: 'https://www.mediamarkt.de/de/search.html?query=Midea+PortaSplit',   scrape: false },
+  { retailer: 'Bauhaus',    name: 'Midea PortaSplit', url: 'https://www.bauhaus.info/suche?q=Midea+PortaSplit',                 scrape: false },
+  { retailer: 'Hornbach',   name: 'Midea PortaSplit', url: 'https://www.hornbach.de/shop/suche/?q=Midea+PortaSplit',           scrape: false },
+  { retailer: 'Globus',     name: 'Midea PortaSplit', url: 'https://www.globus-baumarkt.de/suche?q=Midea+PortaSplit',          scrape: false },
+  { retailer: 'toom',       name: 'Midea PortaSplit', url: 'https://www.toom.de/suche/?q=Midea+PortaSplit',                    scrape: false },
+  { retailer: 'Hellweg',    name: 'Midea PortaSplit', url: 'https://www.hellweg.de/suche.htm?search=Midea+PortaSplit',         scrape: false },
+  { retailer: 'hagebau',    name: 'Midea PortaSplit', url: 'https://www.hagebau.de/suche/?q=Midea+PortaSplit',                 scrape: false },
 ]
 
-const IN_STOCK_WORDS = [/in den warenkorb/i, /add to cart/i, /sofort lieferbar/i, /auf lager/i, /vorrätig/i, /lieferbar/i, /verfügbar/i, /abholbereit/i, /bestellen/i, /jetzt kaufen/i]
-const OUT_STOCK_WORDS = [/ausverkauft/i, /nicht lieferbar/i, /nicht verfügbar/i, /nicht auf lager/i, /derzeit nicht/i, /leider ausverkauft/i, /momentan nicht/i, /out of stock/i, /temporär nicht/i, /zurzeit nicht/i, /OutOfStock/i]
-const CART_WORDS = [/in den warenkorb/i, /add to cart/i, /in den einkaufswagen/i]
+// ─── 关键词检测 ────────────────────────────────────────────────────
 
-function fetchUrl(url, timeout = 12000) {
+const CART_WORDS = [/in den warenkorb/i, /add to cart/i, /in den einkaufswagen/i, /kaufen/i, /bestellen/i]
+const IN_WORDS = [/sofort lieferbar/i, /auf lager/i, /vorrätig/i, /lieferbar/i, /verfügbar/i, /abholbereit/i, /jetzt kaufen/i, /InStock/i]
+const OUT_WORDS = [/ausverkauft/i, /nicht lieferbar/i, /nicht verfügbar/i, /nicht auf lager/i, /derzeit nicht/i, /leider ausverkauft/i, /momentan nicht/i, /out of stock/i, /temporär nicht/i, /zurzeit nicht/i, /OutOfStock/i, /bald wieder verfügbar/i]
+
+function fetchUrl(url, timeout = 15000) {
   return new Promise((resolve, reject) => {
     const lib = url.startsWith('https') ? https : http
     const req = lib.get(url, {
@@ -78,8 +104,8 @@ function checkJsonLd(html) {
 
 function checkKeywords(lower) {
   if (CART_WORDS.some(p => p.test(lower))) return { status: 'in_stock', source: 'cart_btn' }
-  const inC = IN_STOCK_WORDS.filter(p => p.test(lower)).length
-  const outC = OUT_STOCK_WORDS.filter(p => p.test(lower)).length
+  const inC = IN_WORDS.filter(p => p.test(lower)).length
+  const outC = OUT_WORDS.filter(p => p.test(lower)).length
   if (inC > outC && inC >= 2) return { status: 'in_stock', source: 'keyword_high' }
   if (outC > inC && outC >= 2) return { status: 'out_of_stock', source: 'keyword_high' }
   if (inC > 0 && outC === 0) return { status: 'in_stock', source: 'keyword_low' }
@@ -87,10 +113,12 @@ function checkKeywords(lower) {
   return null
 }
 
+// ─── 主流程 ────────────────────────────────────────────────────────
+
 async function run() {
   const results = []
   const ts = new Date().toISOString()
-  console.log(`[${ts}] 开始检查...`)
+  console.log(`[${ts}] 开始检查 ${PRODUCTS.length} 个零售商...`)
 
   for (const p of PRODUCTS) {
     const r = { retailer: p.retailer, name: p.name, url: p.url, checked_at: ts }
@@ -99,38 +127,58 @@ async function run() {
       r.status = 'link_only'
       r.hint = '打开页面自行查看'
       results.push(r)
-      console.log(`  🔗 ${p.retailer}: 快捷入口`)
+      console.log(`  🔗 ${p.retailer.padEnd(10)} ${p.name}`)
       continue
     }
 
-    console.log(`  → ${p.retailer}: ${p.url}`)
+    console.log(`  → ${p.retailer.padEnd(10)} ${p.url}`)
     try {
-      const resp = await fetchUrl(p.url, 12000)
-      if (resp.status !== 200) { r.status = 'fetch_error'; r.error = `HTTP ${resp.status}` }
-      else {
+      const resp = await fetchUrl(p.url, 15000)
+      if (resp.status !== 200) {
+        r.status = 'fetch_error'
+        r.error = `HTTP ${resp.status}`
+        console.log(`  ✗ HTTP ${resp.status}`)
+      } else {
         const j = checkJsonLd(resp.body)
-        if (j) { r.status = j.status; r.source = j.source; if (j.price) r.price = j.price }
-        else {
-          const k = checkKeywords(resp.body.toLowerCase())
-          if (k) { r.status = k.status; r.source = k.source }
-          else { r.status = 'unknown'; r.source = 'inconclusive' }
+        if (j) {
+          r.status = j.status
+          r.source = j.source
+          if (j.price) r.price = j.price
+          console.log(`  ${j.status === 'in_stock' ? '✅' : '❌'} ${j.status} (${j.source})${j.price ? ' · ' + j.price : ''}`)
+        } else {
+          const lower = resp.body.toLowerCase()
+          const k = checkKeywords(lower)
+          if (k) {
+            r.status = k.status
+            r.source = k.source
+            console.log(`  ${k.status === 'in_stock' ? '✅' : '❌'} ${k.status} (${k.source})`)
+          } else {
+            r.status = 'unknown'
+            r.source = 'inconclusive'
+            console.log(`  ❓ unknown (no JSON-LD, no keywords)`)
+          }
         }
       }
-    } catch (e) { r.status = 'fetch_error'; r.error = e.message }
+    } catch (e) {
+      r.status = 'fetch_error'
+      r.error = e.message
+      console.log(`  ❌ ${e.message}`)
+    }
     results.push(r)
-    console.log(`  ${r.status === 'in_stock' ? '✅' : r.status === 'out_of_stock' ? '❌' : '❓'} ${r.status}${r.price ? ' · ' + r.price : ''} (${r.source || ''})`)
     await new Promise(r => setTimeout(r, 1500))
   }
 
   const inStock = results.filter(r => r.status === 'in_stock').length
   const outOfStock = results.filter(r => r.status === 'out_of_stock').length
-  console.log(`\n📊 ✅ ${inStock} · ❌ ${outOfStock} · 🔗 ${results.filter(r => r.status === 'link_only').length} 快捷入口`)
+  const errors = results.filter(r => r.status === 'fetch_error').length
+  const links = results.filter(r => r.status === 'link_only').length
+  console.log(`\n📊 ✅ ${inStock} 有货 · ❌ ${outOfStock} 售罄 · ❓ ${results.filter(r => r.status === 'unknown').length} 未知 · ⚠️ ${errors} 错误 · 🔗 ${links} 快捷入口`)
 
-  const out = { timestamp: ts, summary: { in_stock: inStock, out_of_stock: outOfStock, errors: results.filter(r => r.status === 'fetch_error').length }, results }
+  const out = { timestamp: ts, summary: { in_stock: inStock, out_of_stock: outOfStock, errors, unknown: results.filter(r => r.status === 'unknown').length }, results }
   const dir = path.join(__dirname, '..', 'docs')
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
   fs.writeFileSync(path.join(dir, 'results.json'), JSON.stringify(out, null, 2))
-  console.log(`\n✅ docs/results.json`)
+  console.log(`\n✅ 结果已保存到 docs/results.json`)
 }
 
 if (require.main === module) run().catch(e => { console.error(e); process.exit(1) })
