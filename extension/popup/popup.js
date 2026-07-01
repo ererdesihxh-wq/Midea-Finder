@@ -97,11 +97,18 @@ function renderResults(data) {
         html += '<div class="ts">🕐 ' + t.toLocaleString('de-DE') + ' (' + diff + ' ' + chrome.i18n.getMessage('minutes_ago') + ')</div>'
     }
 
-    /* 按状态排序：有货 > 错误 > 快捷入口 > 未知 > 售罄 */
-    var order = { in_stock: 0, fetch_error: 1, link_only: 2, unknown: 3, out_of_stock: 4 }
-    var sorted = (data.results || []).slice().sort(function(a, b) {
-        return (order[a.status] || 5) - (order[b.status] || 5)
-    })
+    /* 有货排最前，其余按原顺序 */
+    var results = data.results || []
+    var inStock = []
+    var others = []
+    for (var i = 0; i < results.length; i++) {
+        if (results[i].status === 'in_stock') {
+            inStock.push(results[i])
+        } else {
+            others.push(results[i])
+        }
+    }
+    var sorted = inStock.concat(others)
 
     for (var i = 0; i < sorted.length; i++) {
         var r = sorted[i]
