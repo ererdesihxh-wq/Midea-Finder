@@ -2,11 +2,8 @@ name: 检查 Midea PortaSplit 库存
 
 on:
   schedule:
-    # 每 30 分钟跑一次（和 braucheklima.de 差不多频率）
     - cron: '*/30 * * * *'
-  workflow_dispatch:  # 也可以手动触发
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
   scrape:
@@ -15,10 +12,10 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v4
 
-      - name: 用 Node.js 运行爬虫
+      - name: 运行爬虫
         run: node scraper/index.js
 
-      - name: 提交结果到仓库
+      - name: 提交结果
         run: |
           git config user.name "midea-finder-bot"
           git config user.email "bot@localhost"
