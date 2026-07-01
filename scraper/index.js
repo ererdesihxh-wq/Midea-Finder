@@ -15,35 +15,39 @@ const path = require('path')
 // scrape: false → 快捷入口（点击打开页面）
 const PRODUCTS = [
   // === 能自动检测库存的（产品页）===
+  // OBI — 成功！JSON-LD 和关键词都能抓到
   {
     retailer: 'OBI',
     name: 'Midea PortaSplit 12K',
     url: 'https://www.obi.de/p/8620890/midea-mobile-split-klimaanlage-portasplit',
     scrape: true,
   },
+  // Amazon — 试试 Amazon 产品页
   {
-    retailer: 'Galaxus',
-    name: 'Midea Porta Split 12K',
-    url: 'https://www.galaxus.de/en/s2/product/midea-porta-split-42-m-12000-btuh-air-conditioners-40851329',
-    scrape: true,
-  },
-  {
-    retailer: 'Otto',
+    retailer: 'Amazon',
     name: 'Midea PortaSplit 12K',
-    url: 'https://www.otto.de/p/midea-portasplit-12k-7890123/',
+    url: 'https://www.amazon.de/-/en/Midea-Portasplit-Conditioning-Cooling-Heating/dp/B0D3PP64JS',
     scrape: true,
   },
-  // 也试一下 PortaSplit Cool 和其他变体
+  // tado° — 官方合作伙伴
   {
-    retailer: 'OBI',
-    name: 'Midea PortaSplit Cool 8K',
-    url: 'https://www.obi.de/search/?q=Midea+PortaSplit+Cool',
+    retailer: 'tado°',
+    name: 'Midea PortaSplit 12K',
+    url: 'https://www.tado.com/en-gb/lp/midea-portasplit',
+    scrape: true,
+  },
+  // weinmann-schanz — 小众零售商
+  {
+    retailer: 'Weinmann-Schanz',
+    name: 'Midea PortaSplit 12K',
+    url: 'https://www.weinmann-schanz.de/us/en/produkte/produkt.html/mobiles-split-klimageraet-r-32-midea-porta-split-3-5kw-90-134-79.html',
     scrape: true,
   },
 
-  // === 不能自动抓的（搜索页/活动页），作为快捷入口 ===
-  { retailer: 'Amazon',     name: 'Midea PortaSplit', url: 'https://www.amazon.de/s?k=Midea+PortaSplit',                      scrape: false },
+  // === 搜索页/活动页，作为快捷入口 ===
   { retailer: 'MediaMarkt', name: 'Midea PortaSplit', url: 'https://www.mediamarkt.de/de/search.html?query=Midea+PortaSplit',   scrape: false },
+  { retailer: 'Galaxus',    name: 'Midea Porta Split', url: 'https://www.galaxus.de/en/s2/product/midea-porta-split-42-m-12000-btuh-air-conditioners-40851329', scrape: false },
+  { retailer: 'Otto',       name: 'Midea PortaSplit', url: 'https://www.otto.de/haushalt/klimageraete/?marke=midea',            scrape: false },
   { retailer: 'Bauhaus',    name: 'Midea PortaSplit', url: 'https://www.bauhaus.info/suche?q=Midea+PortaSplit',                 scrape: false },
   { retailer: 'Hornbach',   name: 'Midea PortaSplit', url: 'https://www.hornbach.de/shop/suche/?q=Midea+PortaSplit',           scrape: false },
   { retailer: 'Globus',     name: 'Midea PortaSplit', url: 'https://www.globus-baumarkt.de/suche?q=Midea+PortaSplit',          scrape: false },

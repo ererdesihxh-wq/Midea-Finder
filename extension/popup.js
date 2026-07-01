@@ -2,15 +2,17 @@
 const DATA_URL = 'https://raw.githubusercontent.com/ererdesihxh-wq/Midea-Finder/main/docs/results.json'
 
 const CHAIN_COLORS = {
-  OBI: '#52b530', Galaxus: '#ff9900', Otto: '#d3232a',
-  Amazon: '#ff9900', MediaMarkt: '#e4000b',
+  OBI: '#52b530', Amazon: '#ff9900', 'tado°': '#1a2b4a',
+  'Weinmann-Schanz': '#003366',
+  MediaMarkt: '#e4000b', Galaxus: '#ff9900', Otto: '#d3232a',
   Bauhaus: '#e30613', Hornbach: '#d6002e', Globus: '#e3000f',
   toom: '#004a9f', Hellweg: '#f39200', hagebau: '#004b87',
 }
 
 const CHAIN_ICONS = {
-  OBI: '🟢', Galaxus: '🟠', Otto: '🔴',
-  Amazon: '🟠', MediaMarkt: '🔴',
+  OBI: '🟢', Amazon: '🟠', 'tado°': '🔵',
+  'Weinmann-Schanz': '🔵',
+  MediaMarkt: '🔴', Galaxus: '🟠', Otto: '🔴',
   Bauhaus: '🔴', Hornbach: '🔴', Globus: '🔴',
   toom: '🔵', Hellweg: '🟠', hagebau: '🔵',
 }
@@ -86,10 +88,12 @@ function render(data) {
 function renderFallback() {
   const all = [
     { retailer: 'OBI', url: 'https://www.obi.de/p/8620890/midea-mobile-split-klimaanlage-portasplit', name: 'Midea PortaSplit 12K' },
-    { retailer: 'Galaxus', url: 'https://www.galaxus.de/en/s2/product/midea-porta-split-42-m-12000-btuh-air-conditioners-40851329', name: 'Midea Porta Split 12K' },
-    { retailer: 'Otto', url: 'https://www.otto.de/p/midea-portasplit-12k-7890123/', name: 'Midea PortaSplit 12K' },
-    { retailer: 'Amazon', url: 'https://www.amazon.de/s?k=Midea+PortaSplit', name: 'Midea PortaSplit' },
+    { retailer: 'Amazon', url: 'https://www.amazon.de/-/en/Midea-Portasplit-Conditioning-Cooling-Heating/dp/B0D3PP64JS', name: 'Midea PortaSplit 12K' },
+    { retailer: 'tado°', url: 'https://www.tado.com/en-gb/lp/midea-portasplit', name: 'Midea PortaSplit 12K' },
+    { retailer: 'Weinmann-Schanz', url: 'https://www.weinmann-schanz.de/us/en/produkte/produkt.html/mobiles-split-klimageraet-r-32-midea-porta-split-3-5kw-90-134-79.html', name: 'Midea PortaSplit 12K' },
     { retailer: 'MediaMarkt', url: 'https://www.mediamarkt.de/de/search.html?query=Midea+PortaSplit', name: 'Midea PortaSplit' },
+    { retailer: 'Galaxus', url: 'https://www.galaxus.de/en/s2/product/midea-porta-split-42-m-12000-btuh-air-conditioners-40851329', name: 'Midea Porta Split 12K' },
+    { retailer: 'Otto', url: 'https://www.otto.de/haushalt/klimageraete/?marke=midea', name: 'Midea PortaSplit' },
     { retailer: 'Bauhaus', url: 'https://www.bauhaus.info/suche?q=Midea+PortaSplit', name: 'Midea PortaSplit' },
     { retailer: 'Hornbach', url: 'https://www.hornbach.de/shop/suche/?q=Midea+PortaSplit', name: 'Midea PortaSplit' },
     { retailer: 'Globus', url: 'https://www.globus-baumarkt.de/suche?q=Midea+PortaSplit', name: 'Midea PortaSplit' },
