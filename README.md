@@ -54,6 +54,9 @@ extension/
 **English（with trending keywords）：**
 > **Midea PortaSplit Finder** helps you quickly check Midea PortaSplit portable air conditioner stock across **13 German retailers** including OBI, Amazon, MediaMarkt, Bauhaus, Hornbach, and more. Supports **12.000 BTU** and **8.000 BTU** models. Auto-detects in-stock/sold-out status, one-click to purchase page. Data updates every 30 minutes. Zero permissions, no data collection. Free and open-source.
 
+**Deutsch（für den Chrome Web Store, mit Trend-Keywords）：**
+> **Midea PortaSplit Finder** – Finden Sie die **Midea Klimaanlage PortaSplit** auf Lager bei 13 deutschen Händlern. Die **Klimaanlage PortaSplit** (12.000 BTU / 8.000 BTU) ist aktuell stark nachgefragt. Die Extension prüft automatisch die Verfügbarkeit bei OBI, Amazon, MediaMarkt, Bauhaus, Hornbach und mehr. Ein Klick führt direkt zur Produktseite. Datenaktualisierung alle 30 Minuten. Keine Berechtigungen erforderlich. Kostenlos und Open Source.
+
 **短描述（Chrome 商店副标题用）：**
 > Midea PortaSplit 德国库存监控 · 13家零售商自动检测 · 免费开源
 
