@@ -29,19 +29,19 @@ const PRODUCTS = [
     url: 'https://www.amazon.de/-/en/Midea-Portasplit-Conditioning-Cooling-Heating/dp/B0D3PP64JS',
     scrape: true,
   },
-  // tado° — 官方合作伙伴
+  // tado° — 官方合作伙伴（landing page，无库存信息）
   {
     retailer: 'tado°',
     name: 'Midea PortaSplit 12K',
     url: 'https://www.tado.com/en-gb/lp/midea-portasplit',
-    scrape: true,
+    scrape: false,
   },
-  // weinmann-schanz — 小众零售商
+  // weinmann-schanz — 小众零售商（无库存关键词）
   {
     retailer: 'Weinmann-Schanz',
     name: 'Midea PortaSplit 12K',
     url: 'https://www.weinmann-schanz.de/us/en/produkte/produkt.html/mobiles-split-klimageraet-r-32-midea-porta-split-3-5kw-90-134-79.html',
-    scrape: true,
+    scrape: false,
   },
 
   // === 搜索页/活动页，作为快捷入口 ===
