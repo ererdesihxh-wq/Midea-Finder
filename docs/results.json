@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-01T11:37:33.565Z",
+  "timestamp": "2026-07-01T14:25:58.809Z",
   "summary": {
     "in_stock": 2,
     "out_of_stock": 0,
@@ -11,7 +11,7 @@
       "retailer": "OBI",
       "name": "Midea PortaSplit 12K",
       "url": "https://www.obi.de/p/8620890/midea-mobile-split-klimaanlage-portasplit",
-      "checked_at": "2026-07-01T11:37:33.565Z",
+      "checked_at": "2026-07-01T14:25:58.809Z",
       "status": "in_stock",
       "source": "cart_btn"
     },
@@ -19,7 +19,7 @@
       "retailer": "Amazon",
       "name": "Midea PortaSplit 12K",
       "url": "https://www.amazon.de/-/en/Midea-Portasplit-Conditioning-Cooling-Heating/dp/B0D3PP64JS",
-      "checked_at": "2026-07-01T11:37:33.565Z",
+      "checked_at": "2026-07-01T14:25:58.809Z",
       "status": "in_stock",
       "source": "cart_btn"
     },
@@ -27,7 +27,7 @@
       "retailer": "tado°",
       "name": "Midea PortaSplit 12K",
       "url": "https://www.tado.com/en-gb/lp/midea-portasplit",
-      "checked_at": "2026-07-01T11:37:33.565Z",
+      "checked_at": "2026-07-01T14:25:58.809Z",
       "status": "link_only",
       "hint": "打开页面自行查看"
     },
@@ -35,7 +35,7 @@
       "retailer": "Weinmann-Schanz",
       "name": "Midea PortaSplit 12K",
       "url": "https://www.weinmann-schanz.de/us/en/produkte/produkt.html/mobiles-split-klimageraet-r-32-midea-porta-split-3-5kw-90-134-79.html",
-      "checked_at": "2026-07-01T11:37:33.565Z",
+      "checked_at": "2026-07-01T14:25:58.809Z",
       "status": "link_only",
       "hint": "打开页面自行查看"
     },
@@ -43,7 +43,7 @@
       "retailer": "MediaMarkt",
       "name": "Midea PortaSplit",
       "url": "https://www.mediamarkt.de/de/search.html?query=Midea+PortaSplit",
-      "checked_at": "2026-07-01T11:37:33.565Z",
+      "checked_at": "2026-07-01T14:25:58.809Z",
       "status": "link_only",
       "hint": "打开页面自行查看"
     },
@@ -51,7 +51,7 @@
       "retailer": "Galaxus",
       "name": "Midea Porta Split",
       "url": "https://www.galaxus.de/en/s2/product/midea-porta-split-42-m-12000-btuh-air-conditioners-40851329",
-      "checked_at": "2026-07-01T11:37:33.565Z",
+      "checked_at": "2026-07-01T14:25:58.809Z",
       "status": "link_only",
       "hint": "打开页面自行查看"
     },
@@ -59,7 +59,7 @@
       "retailer": "Otto",
       "name": "Midea PortaSplit",
       "url": "https://www.otto.de/haushalt/klimageraete/?marke=midea",
-      "checked_at": "2026-07-01T11:37:33.565Z",
+      "checked_at": "2026-07-01T14:25:58.809Z",
       "status": "link_only",
       "hint": "打开页面自行查看"
     },
@@ -67,7 +67,7 @@
       "retailer": "Bauhaus",
       "name": "Midea PortaSplit",
       "url": "https://www.bauhaus.info/suche?q=Midea+PortaSplit",
-      "checked_at": "2026-07-01T11:37:33.565Z",
+      "checked_at": "2026-07-01T14:25:58.809Z",
       "status": "link_only",
       "hint": "打开页面自行查看"
     },
@@ -75,7 +75,7 @@
       "retailer": "Hornbach",
       "name": "Midea PortaSplit",
       "url": "https://www.hornbach.de/shop/suche/?q=Midea+PortaSplit",
-      "checked_at": "2026-07-01T11:37:33.565Z",
+      "checked_at": "2026-07-01T14:25:58.809Z",
       "status": "link_only",
       "hint": "打开页面自行查看"
     },
@@ -83,7 +83,7 @@
       "retailer": "Globus",
       "name": "Midea PortaSplit",
       "url": "https://www.globus-baumarkt.de/suche?q=Midea+PortaSplit",
-      "checked_at": "2026-07-01T11:37:33.565Z",
+      "checked_at": "2026-07-01T14:25:58.809Z",
       "status": "link_only",
       "hint": "打开页面自行查看"
     },
@@ -91,7 +91,7 @@
       "retailer": "toom",
       "name": "Midea PortaSplit",
       "url": "https://www.toom.de/suche/?q=Midea+PortaSplit",
-      "checked_at": "2026-07-01T11:37:33.565Z",
+      "checked_at": "2026-07-01T14:25:58.809Z",
       "status": "link_only",
       "hint": "打开页面自行查看"
     },
@@ -99,7 +99,7 @@
       "retailer": "Hellweg",
       "name": "Midea PortaSplit",
       "url": "https://www.hellweg.de/suche.htm?search=Midea+PortaSplit",
-      "checked_at": "2026-07-01T11:37:33.565Z",
+      "checked_at": "2026-07-01T14:25:58.809Z",
       "status": "link_only",
       "hint": "打开页面自行查看"
     },
@@ -107,7 +107,7 @@
       "retailer": "hagebau",
       "name": "Midea PortaSplit",
       "url": "https://www.hagebau.de/suche/?q=Midea+PortaSplit",
-      "checked_at": "2026-07-01T11:37:33.565Z",
+      "checked_at": "2026-07-01T14:25:58.809Z",
       "status": "link_only",
       "hint": "打开页面自行查看"
     }
