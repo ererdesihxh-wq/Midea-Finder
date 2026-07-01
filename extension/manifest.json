@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Midea PortaSplit 库存",
-  "version": "1.0",
-  "description": "查看 Midea PortaSplit 空调在各建材店的库存",
+  "name": "Midea PortaSplit Finder",
+  "version": "1.0.0",
+  "description": "一键查看 Midea PortaSplit 空调在 OBI、Amazon、MediaMarkt 等 13 家德国零售商的库存状态。自动检测有货/售罄，一鍵直达购买页面。",
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
