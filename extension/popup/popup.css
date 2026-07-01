@@ -1,0 +1,184 @@
+/* ─── 全局 ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    width: 440px;
+    font: 14px -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+    background: #f0f4f8;
+    color: #1a1a2e;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ─── 头部 ─── */
+.header {
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    color: #fff;
+    padding: 14px 16px;
+    text-align: center;
+}
+.header-title { font-size: 18px; font-weight: 700; }
+.header-desc { font-size: 11px; opacity: .75; margin-top: 2px; }
+
+/* ─── 工具栏 ─── */
+.toolbar {
+    display: flex;
+    gap: 8px;
+    padding: 8px 14px;
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+}
+.btn-tool {
+    display: inline-block;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #f9fafb;
+    color: #374151;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .15s, border-color .15s;
+}
+.btn-tool:hover {
+    background: #e5e7eb;
+    border-color: #9ca3af;
+}
+
+/* ─── 结果列表 ─── */
+.results { padding: 10px 14px; min-height: 80px; }
+
+/* ─── 门店卡片 ─── */
+.item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px;
+    margin-bottom: 6px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
+    transition: all .15s;
+}
+.item:hover { box-shadow: 0 2px 8px rgba(0,0,0,.08); border-color: #3b82f6; }
+.item:active { transform: scale(.98); }
+.item-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+}
+.item-info { flex: 1; min-width: 0; }
+.item-name { font-weight: 600; font-size: 13px; }
+.item-hint { font-size: 11px; color: #6b7280; margin-top: 1px; }
+.item-badge { font-size: 12px; font-weight: 600; white-space: nowrap; }
+.badge-ok { color: #16a34a; }
+.badge-err { color: #dc2626; }
+.badge-link { color: #3b82f6; }
+.badge-unknown { color: #9ca3af; }
+
+/* ─── 时间戳 ─── */
+.ts {
+    text-align: center;
+    padding: 8px;
+    font-size: 10px;
+    color: #9ca3af;
+    border-top: 1px solid #e5e7eb;
+    background: #fff;
+}
+
+/* ─── 加载动画 ─── */
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #6b7280;
+}
+.spinner {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid #e5e7eb;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin .6s linear infinite;
+    margin-bottom: 8px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ─── 弹窗覆盖层 ─── */
+.overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+.overlay.hidden { display: none; }
+.overlay-content {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px;
+    max-width: 380px;
+    box-shadow: 0 4px 24px rgba(0,0,0,.2);
+}
+.overlay-content h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+.guide-text {
+    font-size: 14px;
+    color: #374151;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+.guide-detail {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 4px;
+    line-height: 1.5;
+}
+.btn-close {
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+    padding: 8px;
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-close:hover { background: #2563eb; }
+
+/* ─── 底部 ─── */
+.footer {
+    text-align: center;
+    padding: 10px 14px;
+    font-size: 11px;
+    color: #9ca3af;
+    border-top: 1px solid #e5e7eb;
+    background: #fff;
+}
+.footer-links a {
+    color: #6b7280;
+    text-decoration: none;
+}
+.footer-links a:hover {
+    color: #3b82f6;
+    text-decoration: underline;
+}
+.footer-sep {
+    margin: 0 6px;
+    color: #d1d5db;
+}

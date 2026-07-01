@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+<div class="header">
+    <h1 data-i18n="app_header_title" class="header-title">Midea PortaSplit Finder</h1>
+    <p data-i18n="app_header_desc" class="header-desc">13 家德国零售商 · 库存自动检测 · 免费开源</p>
+</div>
+
+<div class="toolbar">
+    <button id="btnGuide" data-i18n="use_guide" class="btn-tool">使用简介</button>
+    <a id="btnExample" data-i18n="example_page" class="btn-tool" href="https://www.obi.de/p/8620890/midea-mobile-split-klimaanlage-portasplit" target="_blank">示例页面</a>
+</div>
+
+<div id="results" class="results">
+    <div class="loading">
+        <div class="spinner"></div>
+        <div data-i18n="loading_text">正在获取最新库存...</div>
+    </div>
+</div>
+
+<!-- 使用简介弹窗 -->
+<div id="guideOverlay" class="overlay hidden">
+    <div class="overlay-content">
+        <h3 data-i18n="use_guide">使用简介</h3>
+        <p data-i18n="use_guide_text" class="guide-text">点击各商家卡片，自动打开该商家产品页面查看库存。</p>
+        <p class="guide-detail">✅ 绿色 = 有货 · ❌ 红色 = 售罄 · 🔗 蓝色 = 打开查看</p>
+        <p class="guide-detail">数据每 30 分钟自动从各零售商官网更新。</p>
+        <button id="btnCloseGuide" class="btn-close">关闭</button>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-links">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=9573335@gmail.com" target="_blank">
+            <span data-i18n="email_support">售后邮箱</span>：9573335@gmail.com
+        </a>
+        <span class="footer-sep">|</span>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ererdesihxh@gmail.com" target="_blank">
+            <span data-i18n="email_dev">开发者邮箱</span>：ererdesihxh@gmail.com
+        </a>
+    </div>
+</footer>
+
+<script src="popup.js"></script>
+</body>
+</html>

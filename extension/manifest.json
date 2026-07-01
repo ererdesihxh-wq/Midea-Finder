@@ -1,19 +1,21 @@
 {
-  "manifest_version": 3,
-  "name": "Midea PortaSplit Finder",
-  "version": "1.0.0",
-  "description": "一键查看 Midea PortaSplit 空调在 OBI、Amazon、MediaMarkt 等 13 家德国零售商的库存状态。自动检测有货/售罄，一鍵直达购买页面。",
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "icon16.png",
-      "48": "icon48.png",
-      "128": "icon.png"
+    "manifest_version": 3,
+    "name": "__MSG_app_name__",
+    "description": "__MSG_app_description__",
+    "version": "1.0.0",
+    "version_name": "1.0.0",
+    "default_locale": "zh_CN",
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon.png"
+    },
+    "action": {
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon.png"
+        },
+        "default_popup": "popup/popup.html"
     }
-  },
-  "icons": {
-    "16": "icon16.png",
-    "48": "icon48.png",
-    "128": "icon.png"
-  }
 }

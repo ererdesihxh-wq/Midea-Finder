@@ -1,0 +1,19 @@
+{
+    "app_name": {"message": "Midea PortaSplit Finder"},
+    "app_description": {"message": "查询 Midea PortaSplit（美的移动分体空调 12000 BTU / 8000 BTU）在德国 OBI、Amazon、MediaMarkt 等 13 家零售商的库存状态，自动检测有货/售罄，一键直达购买页面"},
+    "app_header_title": {"message": "Midea PortaSplit Finder"},
+    "app_header_desc": {"message": "13 家德国零售商 · 库存自动检测 · 免费开源"},
+    "footer_update": {"message": "数据每 30 分钟自动更新 · 点击门店打开购买页面"},
+    "loading_text": {"message": "正在获取最新库存..."},
+    "in_stock": {"message": "有货"},
+    "out_of_stock": {"message": "售罄"},
+    "open_link": {"message": "打开查看"},
+    "fetch_error": {"message": "暂时无法检测"},
+    "unknown": {"message": "未知"},
+    "minutes_ago": {"message": "分钟前"},
+    "use_guide": {"message": "使用简介"},
+    "use_guide_text": {"message": "点击各商家卡片，自动打开该商家产品页面查看库存。"},
+    "example_page": {"message": "示例页面"},
+    "email_support": {"message": "售后邮箱"},
+    "email_dev": {"message": "开发者邮箱"}
+}

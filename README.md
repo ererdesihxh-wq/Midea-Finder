@@ -22,10 +22,18 @@
 只需打包 `extension/` 文件夹：
 ```
 extension/
+├── _locales/
+│   └── zh_CN/messages.json
+├── icons/
+│   ├── icon16.png
+│   ├── icon48.png
+│   └── icon128.png
+├── popup/
+│   ├── popup.html
+│   ├── popup.js
+│   └── popup.css
 ├── manifest.json
-├── popup.html
-├── popup.js
-└── icon.png / icon16.png / icon48.png
+└── README.md
 ```
 
 ### 上架步骤
@@ -40,11 +48,14 @@ extension/
 
 ### 商店描述参考
 
-**中文：**
-> Midea PortaSplit Finder 是一款免费开源的 Chrome 扩展，帮助您在德国快速找到 Midea PortaSplit 移动空调的库存。支持 OBI、Amazon、MediaMarkt、Bauhaus、Hornbach 等 13 家零售商，自动检测有货/售罄状态，一键直达购买页面。数据每 30 分钟自动更新，零权限，不收集任何个人信息。
+**中文（带热词优化）：**
+> **Midea PortaSplit Finder** 助您快速查找德国各大零售商的 **Midea PortaSplit（美的移动分体空调）** 库存状态。覆盖 OBI、Amazon、MediaMarkt、Bauhaus、Hornbach 等 **13 家零售商**，支持 **12.000 BTU** 及 **8.000 BTU** 型号。自动检测有货/售罄，一键直达购买页面。数据每 30 分钟自动更新，零权限，不收集任何个人信息。免费开源。
 
-**English：**
-> Midea PortaSplit Finder is a free and open-source Chrome extension that helps you quickly find Midea PortaSplit portable AC inventory across 13 German retailers including OBI, Amazon, MediaMarkt, Bauhaus, Hornbach and more. Auto-detects in-stock/sold-out status, one-click to purchase page. Data updates every 30 minutes. Zero permissions, no data collection.
+**English（with trending keywords）：**
+> **Midea PortaSplit Finder** helps you quickly check Midea PortaSplit portable air conditioner stock across **13 German retailers** including OBI, Amazon, MediaMarkt, Bauhaus, Hornbach, and more. Supports **12.000 BTU** and **8.000 BTU** models. Auto-detects in-stock/sold-out status, one-click to purchase page. Data updates every 30 minutes. Zero permissions, no data collection. Free and open-source.
+
+**短描述（Chrome 商店副标题用）：**
+> Midea PortaSplit 德国库存监控 · 13家零售商自动检测 · 免费开源
 
 ### 截图建议
 
@@ -58,10 +69,14 @@ extension/
 │   ├── index.js                   # 爬虫脚本
 │   └── test.js                    # 测试
 ├── extension/                     # ← Chrome 扩展（上架这个）
+│   ├── _locales/zh_CN/messages.json
+│   ├── icons/
+│   ├── popup/
+│   │   ├── popup.html
+│   │   ├── popup.js
+│   │   └── popup.css
 │   ├── manifest.json
-│   ├── popup.html
-│   ├── popup.js
-│   └── icon*.png
+│   └── README.md
 ├── docs/
 │   └── results.json               # 爬虫输出（自动生成）
 ├── PRIVACY.md                     # 隐私政策
